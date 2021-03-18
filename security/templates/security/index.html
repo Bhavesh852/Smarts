@@ -1,0 +1,44 @@
+{% extends 'society/basic.html' %}
+{% block css %}
+
+.card{
+  background-color: #ccc;
+  opacity: 1;
+  position: relative;
+}
+
+
+
+{% endblock %}
+
+
+
+{% block body %}
+<section>
+
+  <!-- <div class="header-extradiv mx-auto "> -->
+  <div class="card mx-2 border-info w-25 container text-center my-5 mx-auto py-5">
+    
+      <div class=" col-12">
+       <form class="mx-auto" action="/security/login/" method="POST" >
+    {% csrf_token %}
+           
+      <h1 class="h3 mb-3 text-dark font-weight-normal">Secretary LogIn portal</h1>
+      <hr>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <div class="mb-3"><input type="text" id="inputuser" class="form-control" name="loginusername" placeholder="Username" required="required"></div>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" name="loginpassword" placeholder="Password" required="required">
+      
+      <button class="btn btn-lg mt-4 btn-info btn-block" type="submit">LOgin</button>
+      <p class="mt-5 mb-3 text-muted text-light">© 2020-2021</p>
+
+        </form>
+
+      </div>
+  </div>
+<!-- </div> -->
+
+  
+</section>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'society/dashboard.html' %}
+{% block body %}
+{% if user.is_authenticated %}
+{% load static %}
+<div class="sidebar">
+  <a class="text-center" id="lgo" href="http://127.0.0.1:8000/society/home/">
+  <img src="{% static 'society/logo.png' %}" height="100vh" ></a>
+  <p class="text-info text-center">USER : {{ request.user }}</p>
+  <a href="http://127.0.0.1:8000/society/home/">Home</a>
+  <a class="active" href="http://127.0.0.1:8000/society/complaint">Complaint</a>
+  {% if yes %}
+    <a href="http://127.0.0.1:8000/society/makevote/">Vote Online</a>
+  {% else %}
+    <a href="http://127.0.0.1:8000/society/makevote/">Vote Offline</a>  
+  {% endif %}
+  <a href="/society/maintenance/">Maintenance</a>
+   <a href="http://127.0.0.1:8000/society/logout/">Signout</a>
+</div>
+
+
+<div class="content">
+	{% for message in messages %}
+    	<div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+      		<strong>Message : </strong> {{ message }}
+       		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         		<span aria-hidden="true">&times;</span>
+       		</button>
+    	</div>  
+   	{% endfor %}
+
+<div class="card my-5" id="card">
+  	<div class="card-header text-dark">
+    	Complaint Box
+  	</div>
+  	<div class="card-body" id="com_box">
+  		{% for i in com %}
+  			{% if i.uname == request.user.username %}
+  				<div class="container w-100" align="center">
+	  				<div class="card my-2 w-75">
+	  					<div class="card-header">Your Complaint</div>
+	  					<div class="card-body">
+	  						{{ i.complaint }}
+	  					</div>
+	  					<div class="card-footer">
+	  						<button class="btn btn-warning" data-toggle="popover" title="By Secretary" data-content="{{ i.reply }}">
+	  							See Reply
+	  						</button>
+	  					</div>
+	  				</div>
+  				</div>
+  			{% endif %}
+  		{% endfor %}
+	</div>
+	<div class="card-footer" id="card-footer">
+		<form action="/society/complaint/" method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+	      		<input type="hidden" class="form-control" id="uname" value="{{ request.user }}" name="uname" readonly>
+	    	</div>
+			<div class="form-row">
+			 	<div class="form-group col-md-4">
+			      <input type="hidden" class="form-control" value="{{ request.user.last_name }}" id="flat" name="flat">
+			    </div>   
+	  		</div>
+	  		<div class="form-group row">
+	  			<div class="col-md-10 col-12">
+	  				<input class="form-control" type="text" autocomplete="off" name="complaint" placeholder="Your complaint" >
+	  			</div>
+	  			<div class="col-md-2 col-12">
+	  				<button type="submit" class="btn btn-info">Send</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+
+{% else %}
+	<div class="alert alert-danger" role="alert">
+	  <h4 class="alert-heading">Error: Oops You are not logged In</h4>
+	  <p>Aww yeah, you got an error, read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+	  <hr>
+	  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+	</div>
+{% endif %}
+</body>
+{% endblock %}
+{% block js %}
+	<script>
+		var a = document.getElementById('com_box');
+		a.scrollTop = a.scrollHeight;
+
+		$(document).ready(function(){
+		  $('[data-toggle="popover"]').popover();
+		});
+
+	</script>
+
+
+
+
+{% endblock %}
+
+
+

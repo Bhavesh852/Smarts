@@ -1,0 +1,61 @@
+{% extends 'society/dashboard.html' %}
+{% block css %}
+.jumbotron{
+  box-shadow: 0 10px 18px 0 grey, 0 6px 20px 0 grey;
+}
+
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+  {% load static %}
+  <div class="sidebar">
+    <a class="text-center" id="lgo" href="http://127.0.0.1:8000/security/home/">
+    <img src="{% static 'society/logo.png' %}" height="100vh" ></a>
+    <p class="text-light text-center" >USER : {{ request.user }}</p>
+    <a href="http://127.0.0.1:8000/security/home/">Home</a>
+    <a href="http://127.0.0.1:8000/security/complain/">Complaint Management</a>
+    <a class="active" href="http://127.0.0.1:8000/security/voting/">Voting Management</a>
+    <a href="/security/main/">Maintenance Management</a>
+    <a href="/security/visit/">Visitor Management</a>
+    <a href="http://127.0.0.1:8000/society/logout/">Signout</a>
+  </div>
+
+  <div class="content">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>  
+    {% endfor %}
+    <section class="container mt-5">
+      <div class="jumbotron text-dark">
+        <img src="/media/{{listgroup.image}}" class="w-25 rounded float-right">
+        <h3 class="display-5"><u><i>{{listgroup.name}}:</i></u></h3>
+        <p>PHONE : {{listgroup.phone}}.</p>
+        <p>STATE : {{listgroup.state}}.</p>
+        <p>CITY : {{listgroup.city}}.</p>
+        <p>ADDRESS : {{listgroup.address}}.</p>
+        <p>DATE : {{listgroup.date}}.</p>
+        
+        <p>VOTERS :{% for i in lists %} {{i}}, {% endfor %}</p>
+        <h3 class="text-center display-5"> Total Votes : {{votes}} </h3>
+        <hr class="my-1">
+        <div class="text-center">
+          <a href="/security/listgroup/"><button class="btn btn-outline-dark">Back</button></a>
+        </div>
+      </div>
+    </section>
+  </div>  
+
+{% else %}
+  <div class="alert alert-danger my-5" role="alert">
+    <h4 class="alert-heading">Error: Oops You are not logged In</h4>
+    <p>Aww yeah, you got an error, read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+    <hr>
+    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+  </div>
+{% endif %}
+{% endblock %}

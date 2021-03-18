@@ -1,0 +1,253 @@
+{% extends 'society/dashboard.html' %}
+{% block css %}
+
+body{
+  background: #3f51b5;
+  }
+
+{% endblock %}
+
+{% block body %}
+
+<section>
+   <div class="modal fade" id="LogIn">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">ADD GROUP:</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form action="/security/group/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col form-group">
+                <input type="text" class="form-control" id="fname" placeholder="Name" name="name" required="required" autocomplete="off">
+              </div>
+              <div class="col form-group">
+                <input type="tel" class="form-control" id="fphone" placeholder="Phone" name="phone" required="required" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col form-group">
+                <input type="text" class="form-control" id="fstate" placeholder="State" name="state" required="required" autocomplete="off">
+              </div>
+              <div class="col form-group">
+                <input type="city" class="form-control" id="fcity" placeholder="City" name="city" required="required" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col form-group">
+                <input type="text" class="form-control" id="faddress" placeholder="Address" name="address" required="required" autocomplete="off">
+              </div> 
+            </div>
+
+            <div class="row">
+              <div class="col-6 form-group">
+                <input type="date" class="form-control" id="fdob" placeholder="Date Of Birth" name="dob" required="required" autocomplete="off">
+              </div>
+              
+              <div class="col-6 form-group">
+                <input type="file" class="form-control" id="fphoto" placeholder="Upload a Picture" name="image" autocomplete="off">
+              </div>
+            </div>
+
+             <div class="text-center"><button type="submit" id="but" class="btn btn-outline-success w-50">ADD</button></div>
+
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section>
+<div class="modal fade" id="startvote">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Starting the voting system</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>You can 'END' this system by click on the 'End voting system' </p>
+          <form action="http://127.0.0.1:8000/security/startingvote/" method="POST">
+          <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="yes" name="confirm" required="required"> Check it out.
+            </label>
+          </div>
+          {% csrf_token %}
+          <div class="text-center"><button class="btn btn-primary" data-toggle="modal" data-target="#Register" type="submit">Start</button></div>
+
+        </form>
+        </div>
+        </div>
+    </div>
+</div>
+</section>
+
+{% if user.is_authenticated %}
+{% load static %}
+
+  <div class="sidebar">
+    <a class="text-center" id="lgo" href="http://127.0.0.1:8000/security/home/">
+    <img src="{% static 'society/logo.png' %}" height="100vh" ></a>
+    <p class="text-light text-center" >USER : {{ request.user }}</p>
+    <a href="http://127.0.0.1:8000/security/home/">Home</a>
+    <a href="http://127.0.0.1:8000/security/complain/">Complaint Management</a>
+    <a class="active" href="http://127.0.0.1:8000/security/voting/">Voting Management</a>
+    <a href="/security/main/">Maintenance Management</a>
+    <a href="/security/visit/">Visitor Management</a>
+    <a href="http://127.0.0.1:8000/society/logout/">Signout</a>
+  </div>
+
+  <div class="content">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>  
+    {% endfor %}
+
+    <section>
+      <div class="row mt-5 mx-3">
+        
+        <div class="col-md-4">
+        {% if y %}
+          <div class="card mx-2 border-info">
+            <div class="card-header text-success">
+              VOTING IS ONLINE
+            </div>
+            <div class="card-body text-dark">
+              <p class="card-text"></p>
+              <a href="http://127.0.0.1:8000/security/makevote/" class="btn btn-success w-50">Vote</a>
+            </div>
+          </div>
+        {% else %}
+          <div class="card mx-2 border-danger">
+            <div class="card-header text-danger">
+              VOTING IS OFFLINE
+            </div>
+            <div class="card-body text-dark">
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <!-- <button class="btn btn-success w-50" disabled>Vote</button> -->
+            </div>
+          </div>
+        {% endif %}
+        </div>
+        <div class="col-md-4">
+        <div class="card text-dark">
+            <div class="card-header text-primary">
+              ADD GROUPS
+            </div>
+            <div class="card-body">
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <button class="btn btn-primary" style="width: 40%" data-toggle="modal" data-target="#LogIn" type="submit">ADD</button>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="card w-100 text-dark ">
+            <div class="card-header text-info">
+              LIST OF GROUP
+            </div>
+            <div class="card-body">
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="http://127.0.0.1:8000/security/listgroup/" class="btn btn-info w-50 my-3">List Of Groups</a>
+            </div>
+        </div>
+
+      </div>
+      <div class="row mx-3 my-5">
+
+        <div class="col-md-6">
+          <div class="card text-dark">
+            <div class="card-header">
+              <span class="text-success">START THE</span><span class="text-danger"> VOTING SYSTEM</span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <button class="btn btn-success w-25" data-toggle="modal" data-target="#startvote" id="start" type="submit">Start</button>
+              <a href="/security/endvoting/yes" class="btn btn-danger mx-3 w-25">End</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card text-dark">
+            <div class="card-header text-success">
+              VOTE RESULT
+            </div>
+            <div class="card-body">
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="/security/v_result/" class="btn btn-success w-25">Result</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+    </section>
+
+
+
+
+
+
+
+
+  </div>
+
+<!-- 
+<section class="header-extradiv mt-3">
+
+  <div class="container">
+    <div class="row">
+      <div class=" extra-div col-lg-4 col-md-4 col-12">
+         --><!-- <a href="http://127.0.0.1:8000/security/creategroup/"><i class=" fa-3x fa fa-desktop" aria-hidden="true"></i></a> -->
+        <!-- <button class="btn" data-toggle="modal" data-target="#LogIn" type="submit"><i class=" fa-3x fa fa-desktop" style="color: #007bff" aria-hidden="true"></i>
+        <h2>Add Groups</h2>
+        <p>This is online work platfrom for soceity. By this portal the society members can do complaints, payments of maintenance, data management and lots of work</p></button>
+      </div>
+    {% if y %}
+      <div class="extra-div col-lg-4 col-md-4 col-12">
+        <a href="http://127.0.0.1:8000/security/makevote/"><i class="fa-3x fa fa-magic" aria-hidden="true"></i></a>
+        <h2 style="color: green">Voting is Online</h2>
+        <p>This is online work platfrom for soceity. By this portal the society members can do complaints, payments of maintenance, data management and lots of work</p>
+      </div>
+    {% else %}
+      <div class="extra-div col-lg-4 col-md-4 col-12">
+        <a href="http://127.0.0.1:8000/security/makevote/"><i class="fa-3x fa fa-magic" aria-hidden="true"></i></a>
+        <h2 style="color: red">Voting is Offline</h2>
+        <p>This is online work platfrom for soceity. By this portal the society members can do complaints, payments of maintenance, data management and lots of work</p>
+      </div>
+    {% endif %}
+      <div class="extra-div col-lg-4 col-md-4 col-12">
+        <a href="http://127.0.0.1:8000/security/listgroup/"><i class="fa-3x fa fa-magic" aria-hidden="true"></i></a>
+        <h2>List Of Groups/Start Voting</h2>
+        <p>This is online work platfrom for soceity. By this portal the society members can do complaints, payments of maintenance, data management and lots of work</p>
+      </div>
+    </div>
+  </div>
+  
+</section>
+   
+ -->
+{% else %}
+<div class="alert alert-danger my-5" role="alert">
+  <h4 class="alert-heading">Error: Oops You are not logged In</h4>
+  <p>Aww yeah, you got an error, read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+{% endif %}
+
+
+
+{% endblock %}

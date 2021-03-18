@@ -1,0 +1,172 @@
+{% extends 'society/dashboard.html'  %}
+
+{% block css %}
+
+body{
+  background: #3f51b5;
+  }
+{% endblock %}
+
+
+
+{% block body %}
+
+{% if user.is_authenticated %}
+  {% load static %}
+  <div class="sidebar">
+    <a class="text-center" id="lgo" href="/security/home/">
+    <img src="{% static 'society/logo.png' %}" height="100vh" ></a>
+    <p class="text-light text-center" >USER : {{ request.user }}</p>
+    <a class="active" href="/security/home/">Home</a>
+    <a href="/security/complain/">Complaint Management</a>
+    <a href="/security/voting/">Voting Management</a>
+    <a href="/security/main/">Maintenance Management</a>
+    <a href="/security/visit/">Visitor Management</a>
+    <a href="/society/logout/">Signout</a>
+  </div>
+
+  <div class="content">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>  
+      {% endfor %}
+      <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between">
+                        <h1 class="h3 mb-0 text-gray-800 my-5">Dashboard</h1>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Recents Maintenance bills</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ rno_bil }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                current Maintenance Bills</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ no_bil }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">TOTAL USERS
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{no_u}}</div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                TOTAL(VISITOR)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{no_v}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-12 mb-4">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">LEVELS</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">Current Maintenance<span
+                                            class="float-right">{{no_bil}}%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{no_bil}}%"
+                                            aria-valuenow="{{no_bil}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Recent Maintenance<span
+                                            class="float-right">{{rno_bil}}%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{rno_bil}}%"
+                                            aria-valuenow="{{rno_bil}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Total Complaint<span
+                                            class="float-right">{{no_c}}%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="width: {{no_c}}%"
+                                            aria-valuenow="{{no_c}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Visitors<span
+                                            class="float-right">{{no_v}}%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{no_v}}%"
+                                            aria-valuenow="{{no_v}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+            </div>
+
+
+    
+  </div>
+
+
+{% else %}
+<div class="alert alert-danger my-5" role="alert">
+  <h4 class="alert-heading">Error: Oops You are not logged In</h4>
+  <p>Aww yeah, you got an error, read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+{% endif %}
+
+
+
+
+{% endblock %}

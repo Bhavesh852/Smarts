@@ -1,0 +1,49 @@
+{% extends 'security/index.html' %}
+{% block css %}
+
+body{
+  background: #3f51b5;
+  }
+{% endblock %}
+
+
+
+{% block body %}
+
+{% if user.is_authenticated %}
+<section>
+
+  <div class="container text-center w-50 my-5 ">
+    
+      <div class=" col-12">
+       <form class="mx-auto w-50" action="/security/login/" method="POST" >
+    {% csrf_token %}
+           
+      <h1 class="h3 mb-3 text-light font-weight-normal">Secretary LogIn portal</h1>
+      <hr style="background-color: white;">
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <div class="mb-3"><input type="text" id="inputuser" class="form-control" name="loginusername" placeholder="Username" required="required"></div>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" name="loginpassword" placeholder="Password" required="required">
+      
+      <button class="btn btn-lg mt-4 btn-primary btn-block" type="submit">LOgin</button>
+      <p class="mt-5 mb-3 text-muted text-light">© 2020-2021</p>
+
+        </form>
+
+      </div>
+  </div>
+
+  
+</section>
+{% else %}
+<div class="alert alert-danger my-5" role="alert">
+  <h4 class="alert-heading">Error: Oops You are not logged In</h4>
+  <p>Aww yeah, you got an error, read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ 
+  <style type="text/css">
+          *{       
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Muli', sans-serif;
+    }
+    body{
+      background: #1877f2;
+    }
+    .nav-item {
+      text-transform: uppercase;
+      border-radius: 100px 100px 0 100px;
+    }
+     .rap{
+       background: #333333;
+    }
+      #footer{
+        background: #333333;
+        padding: 37px 0;
+        color: #ccc;
+      }
+
+    .footer-custom {
+        background-color: #333333;
+        font-family: poppins,sans-serif!important;
+        color: #ccc;
+        font-size: 14px!important;
+    }
+    .footer-extended {
+        display: block!important;
+        background-color: #333333;
+        font-family: poppins,sans-serif!important;
+        color: #ccc;
+        font-size: 14px!important;
+    }
+    .footer-top {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .footer-bottom {
+        padding: 13px 0;
+        border-top: 1px solid #474b5a;
+    }
+    .nav-item:active{
+      border-radius: 100px 100px 0 100px; 
+        color: black;
+        background-color: #28a9e2;
+    }
+    .nav-link:hover{
+        border-radius: 100px 100px 0 100px; 
+        color: black;
+        background-color: #28a9e2;
+      }
+    .container-fluid {
+      width: 100%;
+      /*height: 100vh;*/
+      background-color: #1877f2;
+      background-repeat: no-repeat;
+      background-size: cover;                              
+      /*position: absolute;*/
+
+    }
+    #image{
+      border-radius: 100px 100px 0 100px;
+      height: 50vh;
+    }
+    .jumbotron{
+      background-color: #1877f2;
+      width: 100%;
+    }
+    #title{
+        font-size: 75px;
+        margin-bottom: 20px;
+        position: relative;
+        animation: text 3s 1;
+        background:#1877f2;
+       }
+       
+      
+        *{
+          padding: 0;
+          margin: 0;
+            }
+       
+        @keyframes text{
+         0%{
+              color:#1a5259 ;
+              margin-bottom: -90px; 
+            }
+            30%{
+              letter-spacing: 15px;
+              margin-bottom: -90px;
+            }
+            70%{
+              letter-spacing: 8px;
+              margin-bottom: -90px;
+            }
+           }
+
+
+           .extra-div p ,.servicesoffer p{
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-weight: 400;
+            color: #606060;
+            
+           }
+
+           .extra-div h2,.servicediv h2{
+            font-size: 0.9rem;
+            line-height: 1.1;:;;
+            word-spacing: 4px;
+            margin: 20px 0 15px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+           }
+       .header-extradiv{
+        width: 100%;
+        height: auto;
+        /*background: #8c8c8c*/
+        margin: 100px 0;
+        text-align: center;
+       }
+       .extra-div{
+        background-color: #f2f2f2;
+        border: medium none; 
+        padding: 50px ! important;
+        border-radius: 3px;
+        transition: 0.3s;
+
+       }
+       .extra-div:hover{
+        border-radius: 100px 100px 0px 100px;
+        box-shadow: 0 0 20px 0 black; 
+        transform: translateY(-20px);
+       }
+
+       /****************css services start****************/
+       .com{
+        /*background-image:linear-gradient(100deg,#1a5259 0%,#b721FF 40%);*/
+        background-color:#f2f2f2;
+        border: medium none; 
+        padding: 50px ! important;
+        border-radius: 3px;
+        transition: 0.3s;
+
+       }
+       .com:hover{
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.3); 
+        transform: translateY(-20px);
+       }
+
+       .servicesoffer{
+        /*background:#f7f7f9;*/
+        background-color: #f2f2f2;
+        padding: 50px 0 ;
+        margin-bottom: 50px;
+       }
+       .headings{
+        margin-bottom: 50px;
+       }
+       .headings h1{
+        font-size: 1.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+       }
+       .names h1{
+        /*color:#2e2e2e;*/
+        color: #cc5200;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        }
+        .service-icons{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .progress{
+          box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey;
+          height: 0.8rem!important;
+          margin-bottom: 25px!important;
+        }
+        h2{
+          color: #007bff;
+        }
+      /****************css services start****************/   
+      .contactus{
+        width: 100%;
+        height: 100vh;
+        padding: 80px ;
+        border-radius: 100px 100px 0 100px; 
+        /*background-color: #3f51b5;*/
+        background-color: #f2f2f2;
+        position: relative;
+        box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey;
+      }
+      
+
+      .contactus:before{
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        /*background-image: #3f51b5;*/
+        /*background-color: #f2f2f2;*/
+        z-index: -1;
+      }
+      #conntacct, .contact-image, #but{
+        border-radius: 100px 100px 0 100px; 
+       /*box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey; */
+      }
+
+
+          	{% block css %}
+            {% endblock %}
+      
+  </style>
+</head>
+<body>
+  	{% load static %}
+   
+
+       
+  	<header>
+    <div class="rap">
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="http://127.0.0.1:8000/society">
+            <img src="{% static 'society/logo.png' %}" height="70vh" >
+          </a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        
+
+
+        {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-success" id="navbardropdown" role="button" data-toggle="dropdown"> Welcome {{ request.user }} </a>
+              <div class="dropdown-menu" aria-labelledby="navbardropdown">
+               
+                <a class="dropdown-item" href="http://127.0.0.1:8000/society/logout/">logout</a>
+              
+              </div>
+            </li>
+        {% else %}
+          <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/society"> Home <span class="sr-only">(current)</span></a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/security">secretary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/society/visitor/">Visitor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#servicediv">services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">about us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#Contactid">contact us</a>
+        </li>
+        {% endif %}   
+      </ul>
+    </div>
+  </div>
+  </nav>
+
+  </div>
+  </header>
+
+
+
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+        <strong>Message : </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>  
+    {% endfor %}    
+
+  	{% block body %}{% endblock %}
+
+
+
+
+    <footer id="footer">
+      <div class="footer-top footer-extended">
+            <div class="container">
+                 <div class="row">
+                 </div><br>
+
+                 <div class="row">
+                 <div class="col-md-12">
+                 <div class="about-widget">
+                  <p> </p>
+                 </div>
+                 </div>
+                 </div>
+            </div>
+      </div>
+      <div class="footer-bottom">
+  <div class="container clearfix">
+  <div class="row">
+  <div class="copyright-text col-md-6">
+  <p>SMART SOCIETY © 2020 All Rights Reserved</p>
+  </div>
+  <div class="col-md-6 text-right">
+  <a href="#" class="fa fa-facebook-square mx-5" attr="facebook icon"></a>
+  <a href="#" class="fa fa-twitter mx-5"></a>
+  <a href="#" class="fa fa-instagram mx-5"></a>
+  </div>
+
+  </div>
+  </div>
+  </div>
+    </footer>
+</body> 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% block js %}
+  <script>
+
+  </script>
+
+{% endblock %}
+</html>  

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Muli",sans-serif;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #1c1e21;
+  position: fixed;
+  height: 100%;
+  background: transparent;
+  overflow: auto;
+  /*border-right: 1px solid #ccc;*/
+  background-color: rgba(12,12,12,0.9);
+  z-index: 10;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff;
+  padding: 16px;
+  text-decoration: none;
+}
+
+ 
+.sidebar a.active {
+  background-color: #ccc;
+  color: black;
+  box-shadow: inset 0 4px 8px 0 #ccc;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+#lgo:hover:not(.active){
+  background-color: #1c1e21;
+}
+div.content {
+  font-size: 1rem;
+  font-weight: 700!important;
+  margin-left: 20%;
+  padding: 1px 16px;
+  padding-right: 20px;
+  /*height: 100vh;*/
+  color: #5a5c69!important;
+  background-color: #f8f9fc;
+  position: relative;
+}
+#card{
+  height: 75vh;
+  box-shadow: 0 4px 8px 0 #ccc, 0 6px 20px 0 #ccc;
+}
+
+#com_box{
+  overflow: scroll auto;
+}
+
+
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.container{
+  /*margin-left: 20%;*/
+  float: right;
+}
+#footer{
+  /*position: relative;*/
+  margin-left: 20%;
+  width: 80%;
+  color: #8a8d91;
+  /*background-color: #1c1e21;*/
+  /*background-color: #ccc;*/
+}
+hr{
+  background-color: black;
+}
+
+.billy{
+  padding: 2%;
+  margin-left: 5%;
+  box-shadow: 0 4px 8px 0 #ccc, 0 6px 20px 0 #ccc;
+  width: 90%;
+}
+
+            {% block css %}
+            {% endblock %}
+</style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+{% block body %}
+
+{% endblock %}
+<footer class="container mt-5" id="footer">
+  <div class="row">
+  <div class="copyright-text col-md-6">
+  <p>SMART SOCIETY © 2021 All Rights Reserved</p>
+  </div>
+  <div class="col-md-6 ">
+  <a href="#" class="fa fa-facebook-square mx-5" attr="facebook icon"></a>
+  <a href="#" class="fa fa-twitter mx-5"></a>
+  <a href="#" class="fa fa-instagram mx-5"></a>
+  </div>
+  </div>
+</footer>
+</body>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% block js %}
+  <script>
+
+  </script>
+{% endblock %}
+</html>
+
+
+

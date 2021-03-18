@@ -1,0 +1,74 @@
+{% extends 'society/dashboard.html' %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+{% load static %}
+
+  <div class="sidebar">
+    <a class="text-center" id="lgo" href="http://127.0.0.1:8000/security/home/">
+    <img src="{% static 'society/logo.png' %}" height="100vh" ></a>
+    <p class="text-light text-center" >USER : {{ request.user }}</p>
+    <a href="http://127.0.0.1:8000/security/home/">Home</a>
+    <a href="http://127.0.0.1:8000/security/complain/">Complaint Management</a>
+    <a class="active" href="http://127.0.0.1:8000/security/voting/">Voting Management</a>
+    <a href="/security/main/">Maintenance Management</a>
+    <a href="/security/visit/">Visitor Management</a>
+    <a href="http://127.0.0.1:8000/society/logout/">Signout</a>
+  </div>
+
+  <div class="content">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>  
+    {% endfor %}
+
+	<section>
+		<div class=" card my-5 py-5" align="center">
+			<div id="barchart"></div>
+		</div>	
+	</section>
+</div>	
+
+{% else %}
+<div class="alert alert-danger my-5" role="alert">
+  <h4 class="alert-heading">Error: Oops You are not logged In</h4>
+  <p>Aww yeah, you got an error, read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block js %}
+<script>
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Votes count'],
+  {% for key, values in win.items %}
+	  ['{{ key }}', {{ values }}],
+  {% endfor %}
+]);
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Voting Result', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+  chart.draw(data, options);
+}
+</script>
+{% endblock %}
+

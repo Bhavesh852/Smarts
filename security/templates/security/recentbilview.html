@@ -1,0 +1,153 @@
+{% extends 'society/dashboard.html' %}
+{% block css %}
+.jumbotron{
+  box-shadow: 0 10px 18px 0 grey, 0 6px 20px 0 grey;
+}
+
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+  {% load static %}
+  <div class="sidebar">
+    <a class="text-center" id="lgo" href="http://127.0.0.1:8000/security/home/">
+    <img src="{% static 'society/logo.png' %}" height="100vh" ></a>
+    <p class="text-light text-center" >USER : {{ request.user }}</p>
+    <a href="http://127.0.0.1:8000/security/home/">Home</a>
+    <a href="http://127.0.0.1:8000/security/complain/">Complaint Management</a>
+    <a href="http://127.0.0.1:8000/security/voting/">Voting Management</a>
+    <a class="active" href="/security/main/">Maintenance Management</a>
+    <a href="/security/visit/">Visitor Management</a>
+    <a href="http://127.0.0.1:8000/society/logout/">Signout</a>
+  </div>
+
+  <div class="content">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>  
+    {% endfor %}
+
+    <section>
+      <a href="/security/main/" class="btn btn-secondary my-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+          <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+        </svg>
+        Back
+      </a>
+    </section>
+
+    <section>
+      <div class="billy my-2 mx-auto">
+        <button onclick="window.print()" class="btn btn-outline-info" style="float: right;">Print</button>
+        <table class="table table-striped table-hover my-5" style="border: 2px solid black;">
+          <thead class="text-center"><tr><th colspan=4> <h3><u> Society Maintenance Bill</u></h3></th></tr></thead>
+          <thead class="text-center">
+            <tr class="bg-dark text-light">
+              <td>Bill No.</td>
+              <td>Bill Date</td>
+              <td>Flat No.</td>
+              <td>Due Date</td>
+            </tr>
+            <tr>
+              <td>{{ rbil.rmain_id }}</td>
+              <td>{{ rbil.rbill_date }}</td>
+              <td>{{ rbil.rFlat_no }}</td>
+              <td>{{ rbil.rDue_date }}</td>
+            </tr>
+            <tr class="bg-dark text-light">
+              <td colspan=2>Period :</td>
+              <td colspan=2>Name Of The Owner:</td>
+            </tr>
+            <tr>
+              <td colspan=2>{{rbil.rPeriod}}</td>
+              <td colspan=2>{{rbil.rName}}</td>
+            </tr>
+            <tr>
+              <td colspan=4></td>
+            </tr>
+            
+          </thead>
+          <tbody>
+            <tr class="bg-dark text-light">
+              <td>Sr. No.</td>
+              <td colspan=2>Description</td>
+              <td>Amount</td>
+            </tr>
+            
+            <tr>
+              <td>1</td>
+              <td colspan=2>All Municipal Dues</td>
+              <td>{{ rbil.rAll_municiple_due }}</td>
+            </tr>
+
+            <tr>
+              <td>2</td>
+              <td colspan=2>Administrative and general expenses</td>
+              <td>{{ rbil.rAdminis_general_expenses }}</td>
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <td colspan=2>Sinking Funds</td>
+              <td>{{ rbil.rSinking_funds }}</td>
+            </tr>
+
+            <tr>
+              <td>4</td>
+              <td colspan=2>Periodic Building Maintenance</td>
+              <td>{{ rbil.rPeriodic_build_mainten }}</td>
+            </tr>
+
+            <tr>
+              <td>5</td>
+              <td colspan=2>Common Area Utilisation / Parking</td>
+              <td>{{ rbil.rCAU_parking }}</td>
+            </tr>
+
+            <tr>
+              <td>6</td>
+              <td colspan=2>Non Occupancy Charges / Miscellaneous</td>
+              <td>{{ rbil.rNon_Ocupancy_charg_miscelnous }}</td>
+            </tr>
+
+            <tr>
+              <td>7</td>
+              <td colspan=2>Past Arrears of contribution</td>
+              <td>{{ rbil.rPast_areas_contribution }}</td>
+            </tr>
+
+            <tr>
+              <td>8</td>
+              <td colspan=2>Interest Dues</td>
+              <td>{{ rbil.rInterest_due }}</td>
+            </tr>
+          
+            <tr>
+              <td colspan=3 class="text-center">TOTAL PAYABLE :</td>
+              <td>{{ rbil.rAmount }}</td>
+            </tr>
+<!-- 
+            <tr>
+              <td colspan="4" class="text-center"><a href="#" class="btn btn-primary w-25">Pay now</a></td>
+            </tr> -->
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>  
+
+{% else %}
+  <div class="alert alert-danger my-5" role="alert">
+    <h4 class="alert-heading">Error: Oops You are not logged In</h4>
+    <p>Aww yeah, you got an error, read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+    <hr>
+    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+  </div>
+{% endif %}
+{% endblock %}
